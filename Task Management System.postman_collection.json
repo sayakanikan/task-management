@@ -1,0 +1,465 @@
+{
+	"info": {
+		"_postman_id": "004d9457-efab-480f-a978-6829cb30412c",
+		"name": "Task Management System",
+		"description": "Collection API untuk aplikasi backend Task Management System\n\nAuthor: Irfansyah",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43189060"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let token = response.data.token;\r",
+									"pm.collectionVariables.set(\"token\", token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "User Register",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "user1",
+									"description": "unique",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user1@gmail.com",
+									"description": "unique|email",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"description": "min: 6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"let token = response.data.token;\r",
+									"pm.collectionVariables.set(\"token\", token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "List Tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/task/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "todo",
+									"description": "todo / in_progress / done",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "desc",
+									"description": "asc / desc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/task/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Test create task",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lorem ipsum create task",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "todo",
+									"description": "required | todo/in_progress/done",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-10-24",
+									"description": "date | yyyy-mm-dd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/task/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Test update task",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "lorem ipsum update task",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "in_progress",
+									"description": "required | todo/in_progress/done",
+									"type": "text"
+								},
+								{
+									"key": "deadline",
+									"value": "2025-10-24",
+									"description": "date | yyyy-mm-dd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/task/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/task/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

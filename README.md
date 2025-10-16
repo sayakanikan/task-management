@@ -79,9 +79,14 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-#### Generate app key & migrasi database (bisa di lewati jika sudah menggunakan dump db yang tersedia)
+#### Generate app key & Secret key JWT
 ```bash
 php artisan key:generate
+php artisan jwt:secret
+```
+
+#### Migrasi database (bisa di lewati jika sudah menggunakan dump db yang tersedia)
+```bash
 php artisan migrate --seed
 ```
 
