@@ -215,7 +215,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/task/",
+							"raw": "{{base_url}}/api/task/?status=todo&sort=desc",
 							"host": [
 								"{{base_url}}"
 							],
@@ -228,44 +228,13 @@
 								{
 									"key": "status",
 									"value": "todo",
-									"description": "todo / in_progress / done",
-									"disabled": true
+									"description": "todo / in_progress / done"
 								},
 								{
 									"key": "sort",
 									"value": "desc",
-									"description": "asc / desc",
-									"disabled": true
+									"description": "asc / desc"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Retrieve Task",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/api/task/1",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"api",
-								"task",
-								"1"
 							]
 						}
 					},
@@ -289,11 +258,6 @@
 						"body": {
 							"mode": "formdata",
 							"formdata": [
-								{
-									"key": "user_id",
-									"value": "1",
-									"type": "text"
-								},
 								{
 									"key": "title",
 									"value": "Test create task",
@@ -352,12 +316,6 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "user_id",
-									"value": "2",
-									"description": "required",
-									"type": "text"
-								},
-								{
 									"key": "title",
 									"value": "Test update task",
 									"description": "required",
@@ -383,14 +341,14 @@
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/api/task/2",
+							"raw": "{{base_url}}/api/task/7",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"task",
-								"2"
+								"7"
 							]
 						}
 					},
