@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -35,6 +36,8 @@ class AuthController extends Controller
             ];
 
             return ApiResponse::success($data, 'Register user berhasil!');
+        } catch (ValidationException $e) {
+            return ApiResponse::error('Validation Exception', 422, $e->errors());
         } catch (Exception $e) {
             return ApiResponse::error('Failed to register user', 500, $e->getMessage());
         }
@@ -55,6 +58,8 @@ class AuthController extends Controller
             }
 
             return ApiResponse::success($this->respondWithToken($token), 'Login berhasil');
+        } catch (ValidationException $e) {
+            return ApiResponse::error('Validation Exception', 422, $e->errors());
         } catch (Exception $e) {
             return ApiResponse::error('Login gagal', 500, $e->getMessage());
         }
@@ -77,6 +82,16 @@ class AuthController extends Controller
             return ApiResponse::success($this->respondWithToken($token), 'Token direfresh');
         } catch (Exception $e) {
             return ApiResponse::error('Gagal merefresh token', 500, $e->getMessage());
+        }
+    }
+
+    public function listUser()
+    {
+        try {
+            $user = User::all();
+            return ApiResponse::success($user, 'Data User berhasil diambil');
+        } catch (Exception $e) {
+            return ApiResponse::error('Gagal mendapatkan data user', 500, $e->getMessage());
         }
     }
 

@@ -40,27 +40,6 @@ class TaskController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        try {
-            $task = Task::with(['user', 'createdBy'])
-                ->where(function ($q) {
-                    $q->where('created_by', Auth::id())
-                      ->orWhere('user_id', Auth::id());
-                })
-                ->where('id', $id)
-                ->first();
-
-            if (!$task) {
-                return ApiResponse::error('Task tidak ditemukan', 404);
-            }
-
-            return ApiResponse::success($task, 'Detail task berhasil diambil');
-        } catch (Exception $e) {
-            return ApiResponse::error('Internal Server Error', 500, $e->getMessage());
-        }
-    }
-
     public function store(Request $request)
     {
         try {
