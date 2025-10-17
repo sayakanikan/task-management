@@ -156,10 +156,10 @@ Tabel utama dalam sistem ini:
 
 | Halaman | Preview |
 |----------|----------|
-| Login | ![Login](./screenshots/login%20page.png) |
-| Register | ![Register Page](./screenshots/register%20page.png) |
-| Task Management | ![Task Management Page](./screenshots/task%20management%20page.png) |
-| Add/Edit Task Modal | ![Add/Edit Task Modal](./screenshots/add-edit%20task%20modal.png) |
+| Login | ![Login](./screenshots/Login%20Page.png) |
+| Register | ![Register Page](./screenshots/Register%20Page.png) |
+| Task Management | ![Task Management Page](./screenshots/Task%20Management%20Page.png) |
+| Add/Edit Task Modal | ![Add/Edit Task Modal](./screenshots/Add-Edit%20Task%20Modal.png) |
 
 ---
 
