@@ -72,7 +72,6 @@ export default function TaskPage() {
 
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [assignedTo, setAssignedTo] = useState<number>(0);
   const [status, setStatus] = useState<TaskStatus>("todo");
   const [deadline, setDeadline] = useState<string>("");
 
@@ -107,7 +106,6 @@ export default function TaskPage() {
   const resetForm = () => {
     setTitle("");
     setDescription("");
-    setAssignedTo(0);
     setStatus("todo");
     setDeadline("");
     setSelectedTask(null);
@@ -140,7 +138,6 @@ export default function TaskPage() {
     try {
       setSaving(true);
       const payload = {
-        user_id: assignedTo,
         title,
         description,
         status,
@@ -169,7 +166,6 @@ export default function TaskPage() {
     setSelectedTask(task);
     setTitle(task.title);
     setDescription(task.description);
-    setAssignedTo(task.user_id ?? 0);
     setStatus(task.status);
     setDeadline(task.deadline || "");
     setShowFormModal(true);
@@ -265,7 +261,7 @@ export default function TaskPage() {
               Tambahkan task pertama Anda untuk memulai 🚀
             </p>
             <p className="text-gray-400 text-sm">
-              Task yang anda buat atau yang di assign ke anda akan muncul di sini.
+              Task yang anda buat akan muncul di sini.
             </p>
           </div>
         ) : (
@@ -365,7 +361,7 @@ export default function TaskPage() {
           </div>
   
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
+            {/* <div>
               <label className="block text-sm text-gray-700 mb-1">Assign ke</label>
               <select
                 value={assignedTo ?? ""}
@@ -379,6 +375,15 @@ export default function TaskPage() {
                   </option>
                 ))}
               </select>
+            </div> */}
+            <div>
+              <label className="block text-sm text-gray-700 mb-1">Deadline</label>
+              <input
+                type="date"
+                value={deadline}
+                onChange={(e) => setDeadline(e.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-blue-400 outline-none transition"
+              />
             </div>
   
             <div>
@@ -393,16 +398,6 @@ export default function TaskPage() {
                 <option value="done">Done</option>
               </select>
             </div>
-          </div>
-  
-          <div>
-            <label className="block text-sm text-gray-700 mb-1">Deadline</label>
-            <input
-              type="date"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2.5 focus:ring-2 focus:ring-blue-400 outline-none transition"
-            />
           </div>
         </div>
   

@@ -4,7 +4,6 @@ import { TaskStatus } from "@/types/task-status";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface Payload {
-  user_id: number, 
   title: string, 
   description: string,
   status: TaskStatus,

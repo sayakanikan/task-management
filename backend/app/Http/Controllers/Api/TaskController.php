@@ -23,10 +23,7 @@ class TaskController extends Controller
             }
 
             $query = Task::with(['user', 'createdBy'])
-                ->where(function ($q) {
-                    $q->where('created_by', Auth::id())
-                      ->orWhere('user_id', Auth::id());
-                });
+                ->where('user_id', Auth::id());
 
             if (!empty($status) && in_array(strtolower($status), ['todo', 'in_progress', 'done'])) {
                 $query->where('status', $status);
@@ -44,7 +41,6 @@ class TaskController extends Controller
     {
         try {
             $validated = $request->validate([
-                'user_id'     => 'required|exists:users,id',
                 'title'       => 'required|string|max:255',
                 'description' => 'nullable|string',
                 'status'      => 'required|in:todo,in_progress,done',
@@ -52,7 +48,7 @@ class TaskController extends Controller
             ]);
 
             $task = Task::create([
-                'user_id'     => $validated['user_id'],
+                'user_id'     => Auth::id(),
                 'title'       => $validated['title'],
                 'description' => $validated['description'] ?? null,
                 'status'      => $validated['status'],
@@ -71,17 +67,13 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $task = Task::where(function ($q) {
-                $q->where('created_by', Auth::id())
-                  ->orWhere('user_id', Auth::id());
-            })->where('id', $id)->first();
+            $task = Task::where('user_id', Auth::id())->where('id', $id)->first();
 
             if (!$task) {
                 return ApiResponse::error('Not Found', 404, 'Task tidak ditemukan');
             }
 
             $validated = $request->validate([
-                'user_id'     => 'required|exists:users,id',
                 'title'       => 'required|string|max:255',
                 'description' => 'nullable|string',
                 'status'      => 'required|in:todo,in_progress,done',
@@ -101,10 +93,7 @@ class TaskController extends Controller
     public function delete($id)
     {
         try {
-            $task = Task::where(function ($q) {
-                $q->where('created_by', Auth::id())
-                  ->orWhere('user_id', Auth::id());
-            })->where('id', $id)->first();
+            $task = Task::where('user_id', Auth::id())->first();
 
             if (!$task) {
                 return ApiResponse::error('Not Found', 404, 'Task tidak ditemukan');

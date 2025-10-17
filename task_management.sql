@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 17, 2025 at 02:29 AM
+-- Generation Time: Oct 17, 2025 at 04:56 AM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.16
 
@@ -32,14 +32,6 @@ CREATE TABLE `cache` (
   `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `cache`
---
-
-INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel-cache-B1rbXeA391DxA9kk', 'a:1:{s:11:\"valid_until\";i:1760629059;}', 1761838419),
-('laravel-cache-iWvwgeaJwDsbHsSZ', 'a:1:{s:11:\"valid_until\";i:1760629051;}', 1761838411);
 
 -- --------------------------------------------------------
 
@@ -196,9 +188,7 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `user_id`, `title`, `description`, `status`, `deadline`, `created_by`, `created_at`, `updated_at`) VALUES
-(4, 4, 'Add task 2', 'Task untuk saya', 'in_progress', '2025-10-19', 4, '2025-10-16 18:58:12', '2025-10-16 18:59:20'),
-(5, 3, 'Tes create', 'coba create task', 'in_progress', '2025-10-18', 4, '2025-10-16 19:15:38', '2025-10-16 19:15:56'),
-(6, 2, 'tes create', 'coba auth', 'todo', '2025-10-17', 1, '2025-10-16 19:20:04', '2025-10-16 19:20:04');
+(1, 1, 'Test task', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis blanditiis necessitatibus harum ipsum voluptatem voluptates?', 'todo', '2026-10-10', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,10 +213,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Default User', 'default_user', 'user@gmail.com', '2025-10-16 06:29:39', '$2y$12$aPKIGDdjovxBq6khVQJmlOg4.tgPUCZNsMmU839koQSwmlqnwuHiC', 'Y15w73NUwe', '2025-10-16 06:29:39', '2025-10-16 06:29:39'),
-(2, 'Default User 2', 'user', 'user2@gmail.com', '2025-10-16 06:29:39', '$2y$12$aPKIGDdjovxBq6khVQJmlOg4.tgPUCZNsMmU839koQSwmlqnwuHiC', 'N6AdxCvm40', '2025-10-16 06:29:39', '2025-10-16 06:29:39'),
-(3, 'User Register', 'user1', 'user1@gmail.com', NULL, '$2y$12$MeQEyRxHlVFRvCXx5OO6MucLK3/R4WEh.aVtNiNJWslUBxHPouqLG', NULL, '2025-10-16 08:17:01', '2025-10-16 08:17:01'),
-(4, 'irfansyah', 'irfansyah', 'irfan@gmail.com', NULL, '$2y$12$/gd.OW1VuArVweghfdP8/OBgmtKctojL/WlkujFImL7R/PLv44Bki', NULL, '2025-10-16 08:27:54', '2025-10-16 08:27:54');
+(1, 'Default User', 'default_user', 'user@gmail.com', '2025-10-16 21:55:40', '$2y$12$vhB1b81wWQwhqjbmCsAuhet0FueV1lRmNrYIKxdOveu2JtIpu0vFS', 'Wc8PWmO83L', '2025-10-16 21:55:41', '2025-10-16 21:55:41'),
+(2, 'Default User 2', 'user', 'user2@gmail.com', '2025-10-16 21:55:41', '$2y$12$vhB1b81wWQwhqjbmCsAuhet0FueV1lRmNrYIKxdOveu2JtIpu0vFS', 'Z4N8LLKSgg', '2025-10-16 21:55:41', '2025-10-16 21:55:41');
 
 --
 -- Indexes for dumped tables
@@ -342,13 +330,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
