@@ -13,18 +13,20 @@ task-management/
 │   ├── src/
 │   ├── .env.example
 │   ├── README.md
-│   └── ...
+│   └── dll...
 ├── frontend/              # Service frontend (Next.js)
 │   ├── src/
+│   ├── .env.example
 │   ├── README.md
-│   └── ...
-├── postman_collection.json # Kumpulan endpoint API untuk Postman
-├── db.sql                 # Dump database
+│   └── dll...
+├── Task Management System.postman_collection.json #    Kumpulan endpoint API untuk Postman
+├── task_management.sql    # Dump database
 ├── README.md              # Dokumentasi utama proyek
-└── screenshots/           # Screenshot tampilan aplikasi
-    ├── login.png
-    ├── dashboard.png
-    └── task_crud.png
+└── screenshots            # Screenshot tampilan 
+    ├── login page.png
+    ├── register page.png
+    ├── task management page.png
+    └── add-edit task modal.png
 ```
 
 ---
@@ -111,18 +113,29 @@ cd frontend
 npm install
 ```
 
+#### Salin file .env.example menjadi .env
+```bash
+cp .env.example .env
+```
+
+#### Konfigurasi environment
+Edit file .env dan sesuaikan URL backend API sesuai server Laravel:
+```bash
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api
+```
+
 #### Jalankan aplikasi
 ```bash
 npm run dev
 ```
 
-Aplikasi frontend akan berjalan di `http://localhost:3000`
+Aplikasi frontend akan berjalan di `http://localhost:3000/login`
 
 ---
 
 ## 🔐 Informasi Login Dummy
 
-| Role | Email | Password |
+| Name | Email | Password |
 |------|--------|-----------|
 | User  | user@gmail.com  | password |
 
@@ -134,15 +147,8 @@ Tabel utama dalam sistem ini:
 
 | Tabel | Deskripsi |
 |-------|------------|
-| `users` | Menyimpan data pengguna (admin & user) |
+| `users` | Menyimpan data pengguna |
 | `tasks` | Menyimpan daftar tugas yang dibuat oleh user |
-| `task_categories` | Menyimpan kategori tugas |
-| `personal_access_tokens` | Token autentikasi untuk API (Sanctum) |
-
-### ERD Singkat
-```
-users (1)───<(tasks)
-```
 
 ---
 
@@ -150,18 +156,10 @@ users (1)───<(tasks)
 
 | Halaman | Preview |
 |----------|----------|
-| Login | ![Login](./screenshots/login.png) |
-| Dashboard | ![Dashboard](./screenshots/dashboard.png) |
-| CRUD Task | ![Task CRUD](./screenshots/task_crud.png) |
-
----
-
-## 📫 Dokumentasi API
-Endpoint API dapat diimpor melalui file berikut:
-
-```
-postman_collection.json
-```
+| Login | ![Login](./screenshots/login%20page.png) |
+| Register | ![Register Page](./screenshots/register%20page.png) |
+| Task Management | ![Task Management Page](./screenshots/task%20management%20page.png) |
+| Add/Edit Task Modal | ![Add/Edit Task Modal](./screenshots/add-edit%20task%20modal.png) |
 
 ---
 
